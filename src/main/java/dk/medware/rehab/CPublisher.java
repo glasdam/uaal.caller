@@ -65,7 +65,7 @@ public class CPublisher extends ContextPublisher {
 	 */
 	protected void publishStatusEvent() {
 		ExerciseResults result = new ExerciseResults();
-		result.addTime(System.currentTimeMillis());
+		result.addTime(Long.valueOf(System.currentTimeMillis()).doubleValue());
 		ContextEvent ev = new ContextEvent(result,
 				ExerciseResults.PROP_TIME);
 		publish(ev);

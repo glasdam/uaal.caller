@@ -72,6 +72,7 @@ public class SCaller extends ServiceCaller {
 		 */
 		ServiceResponse sr = this.call(setExerciseResults);
 		System.out.println("Call status: " + sr.getCallStatus());
+		System.out.println("Call response: "+ sr.getOutput(ExerciseAnalyser.PROP_SUGGESTION_RESULT));
 		return true;
 	}
 	

@@ -12,7 +12,6 @@ public class Activator implements BundleActivator {
 	public static ModuleContext context = null;
 
 	public static SCaller scaller = null;
-	public static CSubscriber csubscriber = null;
 	public static CPublisher cpublisher = null;
 	
 	public static Thread uaal_thread = null;
@@ -42,7 +41,6 @@ public class Activator implements BundleActivator {
         	Activator.context = uAALBundleContainer.THE_CONTAINER
         		.registerModule(new Object[] { bcontext });
         	scaller = new SCaller(context);
-        	csubscriber = new CSubscriber(context);
         	cpublisher = new CPublisher(context);
         	uaal_thread = new SimpleThread("uaal");
         	uaal_thread.start();
@@ -50,7 +48,6 @@ public class Activator implements BundleActivator {
 
 	public void stop(BundleContext arg0) throws Exception {
         	scaller.close();
-        	csubscriber.close();
         	cpublisher.close();
 	}
 
