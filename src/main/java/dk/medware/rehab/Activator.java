@@ -5,7 +5,6 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
-import org.universAAL.ontology.device.StatusValue;
 
 public class Activator implements BundleActivator {
 	public static BundleContext osgiContext = null;

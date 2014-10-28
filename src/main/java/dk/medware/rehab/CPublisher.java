@@ -1,16 +1,12 @@
 package dk.medware.rehab;
 
 
-import java.util.ArrayList;
-
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextPublisher;
 import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
-import org.universAAL.ontology.device.StatusValue;
-import org.universAAL.ontology.device.SwitchController;
 import org.universAAL.ontology.rehabontology.ExerciseResults;
 
 public class CPublisher extends ContextPublisher {
@@ -64,12 +60,12 @@ public class CPublisher extends ContextPublisher {
 	 *            Status of the Subject
 	 */
 	protected void publishStatusEvent() {
+		System.out.println("Publishing event!");
 		ExerciseResults result = new ExerciseResults();
 		result.addTime(Long.valueOf(System.currentTimeMillis()).doubleValue());
 		ContextEvent ev = new ContextEvent(result,
 				ExerciseResults.PROP_TIME);
 		publish(ev);
-		
 	}
 
 }
