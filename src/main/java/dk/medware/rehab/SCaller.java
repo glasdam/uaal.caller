@@ -12,12 +12,13 @@ import org.universAAL.middleware.service.ServiceResponse;
 import org.universAAL.ontology.phThing.DeviceService;
 import org.universAAL.ontology.rehabontology.ExerciseAnalyser;
 import org.universAAL.ontology.rehabontology.ExerciseResults;
+import org.universAAL.ontology.rehabontology.RehabontologyOntology;
 import org.universAAL.ontology.device.SwitchController;
 
 public class SCaller extends ServiceCaller {
 
 	/* -Example- This namespace should only be used here */
-	private static final String CLIENT_OWN_NAMESPACE = "http://your.ontology.URL.com/YourClientDomainOntology.owl#";
+	private static final String CLIENT_OWN_NAMESPACE = RehabontologyOntology.NAMESPACE; //  "http://your.ontology.URL.com/YourClientDomainOntology.owl#";
 	// TODO: Change Namespace
 	/* -Example- URI Constants for handling and identifying outputs */
 	private static final String EXPECT_OUTPUT = CLIENT_OWN_NAMESPACE + "output";

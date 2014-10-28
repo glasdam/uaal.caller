@@ -8,13 +8,14 @@ import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
 import org.universAAL.ontology.rehabontology.ExerciseResults;
+import org.universAAL.ontology.rehabontology.RehabontologyOntology;
 
 public class CPublisher extends ContextPublisher {
 	/*
 	 * -Example- this namespace can be reused in many parts of the code, but not
 	 * all of them
 	 */
-	protected static final String CONTEXT_OWN_NAMESPACE = "http://your.ontology.URL.com/YourProviderDomainOntology.owl#";
+	protected static final String CONTEXT_OWN_NAMESPACE = RehabontologyOntology.NAMESPACE; // "http://your.ontology.URL.com/YourProviderDomainOntology.owl#";
 	// TODO: Change Namespace
 	/*
 	 * -Example- URI Constants for handling and identifying inputs, outputs and

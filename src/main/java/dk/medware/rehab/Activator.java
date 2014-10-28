@@ -48,6 +48,7 @@ public class Activator implements BundleActivator {
 	public void stop(BundleContext arg0) throws Exception {
         	scaller.close();
         	cpublisher.close();
+        	uaal_thread.interrupt();
 	}
 
 }
