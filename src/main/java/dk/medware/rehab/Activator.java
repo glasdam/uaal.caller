@@ -1,6 +1,9 @@
 package dk.medware.rehab;
 
 
+import java.io.IOException;
+
+import org.apache.http.client.ClientProtocolException;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
@@ -28,6 +31,12 @@ public class Activator implements BundleActivator {
 		        	scaller.callGetExerciseSuggestions();
 				} catch (InterruptedException e) {
 					break;
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 			System.out.println("Ended");

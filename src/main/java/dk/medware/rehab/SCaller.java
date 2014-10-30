@@ -1,9 +1,13 @@
 package dk.medware.rehab;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.http.client.ClientProtocolException;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.service.CallStatus;
 import org.universAAL.middleware.service.ServiceCaller;
@@ -24,7 +28,7 @@ public class SCaller extends ServiceCaller {
 	private static final String EXPECT_OUTPUT = CLIENT_OWN_NAMESPACE + "output";
 
 	protected SCaller(ModuleContext context) {
-	super(context);
+		super(context);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -60,23 +64,33 @@ public class SCaller extends ServiceCaller {
 			return null;
 		}
 	}
-	
-	protected Boolean callGetExerciseSuggestions(){
-		ServiceRequest setExerciseResults = new ServiceRequest(new ExerciseAnalyser(), null);
-		ArrayList<ExerciseResults> results = new ArrayList<ExerciseResults>();
-		results.add(new ExerciseResults());
-		results.add(new ExerciseResults());
-		setExerciseResults.addAddEffect( new String []{ ExerciseAnalyser.PROP_EXERCISE_RESULTS }, results);
-		/*
-		 * setStatus.addRequiredOutput(EXPECT_OUTPUT, new String[] {
+
+	protected Boolean callGetExerciseSuggestions() throws ClientProtocolException, IOException{
+		JsonServer.service_server();
+		List<Long> ids = JsonServer.list_needs_evaluation(); 
+		System.out.println(ids);
+		ids.add(1l);
+		for(long id : ids){
+			Map<String, List<Double>> coordinates = JsonServer.coordinates(id);
+			
+			ServiceRequest setExerciseResults = new ServiceRequest(new ExerciseAnalyser(), null);
+			ArrayList<ExerciseResults> results = new ArrayList<ExerciseResults>();
+			ExerciseResults result = new ExerciseResults();
+			result.setResults((Double[])coordinates.get("ys").toArray());
+			result.setTime((Double[])coordinates.get("xs").toArray());
+			results.add(result);
+			setExerciseResults.addAddEffect( new String []{ ExerciseAnalyser.PROP_EXERCISE_RESULTS }, results);
+			/*
+			 * setStatus.addRequiredOutput(EXPECT_OUTPUT, new String[] {
 			DeviceService.PROP_CONTROLS, SwitchController.PROP_HAS_VALUE });
-		 */
-		ServiceResponse sr = this.call(setExerciseResults);
-		System.out.println("Call status: " + sr.getCallStatus());
-		System.out.println("Call response: "+ sr.getOutput(ExerciseAnalyser.PROP_SUGGESTION_RESULT));
+			 */
+			ServiceResponse sr = this.call(setExerciseResults);
+			System.out.println("Call status: " + sr.getCallStatus());
+			System.out.println("Call response: "+ sr.getOutput(ExerciseAnalyser.PROP_SUGGESTION_RESULT));
+		}
 		return true;
 	}
-	
+
 
 	/*
 	 * -Example- These "get" methods elaborate the Service Request for each
@@ -86,7 +100,7 @@ public class SCaller extends ServiceCaller {
 		// This ServiceRequest matches the first profile provided by the callee
 		ServiceRequest setStatus = new ServiceRequest(new DeviceService(), null);
 		setStatus.addValueFilter(new String[] { DeviceService.PROP_CONTROLS },
-			new SwitchController(CPublisher.DEVICE_OWN_URI));
+				new SwitchController(CPublisher.DEVICE_OWN_URI));
 		setStatus.addChangeEffect(new String[] { DeviceService.PROP_CONTROLS,
 				SwitchController.PROP_HAS_VALUE }, new Boolean(status));
 		return setStatus;
@@ -96,9 +110,9 @@ public class SCaller extends ServiceCaller {
 		// This ServiceRequest matches the second profile provided by the callee
 		ServiceRequest setStatus = new ServiceRequest(new DeviceService(), null);
 		setStatus.addValueFilter(new String[] { DeviceService.PROP_CONTROLS },
-			new SwitchController(CPublisher.DEVICE_OWN_URI));
+				new SwitchController(CPublisher.DEVICE_OWN_URI));
 		setStatus.addRequiredOutput(EXPECT_OUTPUT, new String[] {
-			DeviceService.PROP_CONTROLS, SwitchController.PROP_HAS_VALUE });
+				DeviceService.PROP_CONTROLS, SwitchController.PROP_HAS_VALUE });
 		return setStatus;
 	}
 
