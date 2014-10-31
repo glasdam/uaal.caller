@@ -68,7 +68,7 @@ public class SCaller extends ServiceCaller {
 	protected Boolean callGetExerciseSuggestions() throws ClientProtocolException, IOException{
 		JsonServer.service_server();
 		List<Long> ids = JsonServer.list_needs_evaluation(); 
-		System.out.println(ids);
+		//System.out.println(ids);
 		ids.add(1l);
 		for(long id : ids){
 			Map<String, List<Double>> coordinates = JsonServer.coordinates(id);
@@ -80,12 +80,10 @@ public class SCaller extends ServiceCaller {
 			result.setTime((Double[])coordinates.get("xs").toArray());
 			results.add(result);
 			setExerciseResults.addAddEffect( new String []{ ExerciseAnalyser.PROP_EXERCISE_RESULTS }, results);
-			/*
-			 * setStatus.addRequiredOutput(EXPECT_OUTPUT, new String[] {
-			DeviceService.PROP_CONTROLS, SwitchController.PROP_HAS_VALUE });
-			 */
+			setExerciseResults.addRequiredOutput(EXPECT_OUTPUT, new String[] {
+					ExerciseAnalyser.PROP_SUGGESTION_RESULT });
 			ServiceResponse sr = this.call(setExerciseResults);
-			System.out.println("Call status: " + sr.getCallStatus());
+			//System.out.println("Call status: " + sr.getCallStatus());
 			System.out.println("Call response: "+ sr.getOutput(ExerciseAnalyser.PROP_SUGGESTION_RESULT));
 		}
 		return true;

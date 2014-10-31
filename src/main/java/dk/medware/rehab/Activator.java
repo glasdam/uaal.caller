@@ -23,10 +23,10 @@ public class Activator implements BundleActivator {
 	    	super(str);
 	    }
 	    public void run() {
-			while(true){
+			for(int i = 0; i < 3; i++){
 				System.out.println("Fetching!");
 				try {
-					sleep(2000);
+					sleep(3000);
 		        	cpublisher.publishStatusEvent();
 		        	scaller.callGetExerciseSuggestions();
 				} catch (InterruptedException e) {

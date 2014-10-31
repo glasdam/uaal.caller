@@ -36,7 +36,7 @@ public class JsonServer {
 	
 	public static void service_server() throws ClientProtocolException, IOException{
 		List<Long> ids = list_needs_evaluation(); 
-		puts(ids);
+		//puts(ids);
 		for(long id : ids){
 			Map<String, List<Double>> result = coordinates(id);
 			puts("Got list");
@@ -55,7 +55,7 @@ public class JsonServer {
 	public static List<Long> list_needs_evaluation() throws ClientProtocolException, IOException{
 		Response response = Request.Get(BASE_URL+"?api_key="+API_KEY).execute();
 		String json_string = response.returnContent().asString();
-		puts(json_string);
+		//puts(json_string);
 		Object obj = JSONValue.parse(json_string);
 		JSONArray array = (JSONArray)obj;
 		List<Long> ids = new ArrayList<Long>();
