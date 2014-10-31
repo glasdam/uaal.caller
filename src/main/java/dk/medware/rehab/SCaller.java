@@ -22,7 +22,7 @@ import org.universAAL.ontology.device.SwitchController;
 public class SCaller extends ServiceCaller {
 
 	/* -Example- This namespace should only be used here */
-	private static final String CLIENT_OWN_NAMESPACE = "http://uaal.medware.dk/rehab/callee.owl#"; //  "http://your.ontology.URL.com/YourClientDomainOntology.owl#";
+	private static final String CLIENT_OWN_NAMESPACE = "http://uaal.medware.dk/rehab/caller.owl#"; //  "http://your.ontology.URL.com/YourClientDomainOntology.owl#";
 	// TODO: Change Namespace
 	/* -Example- URI Constants for handling and identifying outputs */
 	private static final String EXPECT_OUTPUT = CLIENT_OWN_NAMESPACE + "output";
