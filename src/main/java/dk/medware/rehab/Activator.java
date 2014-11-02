@@ -23,12 +23,13 @@ public class Activator implements BundleActivator {
 	    	super(str);
 	    }
 	    public void run() {
-			for(int i = 0; i < 3; i++){
-				System.out.println("Fetching!");
+		  while(true){
 				try {
-					sleep(3000);
-		        	cpublisher.publishStatusEvent();
-		        	scaller.callGetExerciseSuggestions();
+					sleep(60000);
+          System.out.println("[REHAB] Fetching!");
+		      cpublisher.publishStatusEvent();
+		      scaller.callGetExerciseSuggestions();
+          System.out.println("[REHAB] Sleeping");
 				} catch (InterruptedException e) {
 					break;
 				} catch (ClientProtocolException e) {
@@ -39,7 +40,7 @@ public class Activator implements BundleActivator {
 					e.printStackTrace();
 				}
 			}
-			System.out.println("Ended");
+			System.out.println("[REHAB] Ended");
 	    }
 	}
 	
