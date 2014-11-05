@@ -38,9 +38,11 @@ public class SCaller extends ServiceCaller {
 			if(coordinates.get("ys").size() <= 0) {
 				continue;
 			}
+			System.out.println(coordinates);
 			ServiceRequest setExerciseResults = new ServiceRequest(new ExerciseAnalyser(), null);
 			ArrayList<ExerciseResults> results = new ArrayList<ExerciseResults>();
 			ExerciseResults result = new ExerciseResults();
+			System.out.println(coordinates.get("ys"));
 			result.setResults((Double[])coordinates.get("ys").toArray());
 			result.setTime((Double[])coordinates.get("xs").toArray());
 			results.add(result);
