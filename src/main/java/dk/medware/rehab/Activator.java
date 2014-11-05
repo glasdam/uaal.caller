@@ -25,7 +25,7 @@ public class Activator implements BundleActivator {
 	    public void run() {
 		  while(true){
 				try {
-					sleep(60000);
+					sleep(10000);
           System.out.println("[REHAB] Fetching!");
 		      cpublisher.publishStatusEvent();
 		      scaller.callGetExerciseSuggestions();
