@@ -43,8 +43,8 @@ public class SCaller extends ServiceCaller {
 			ArrayList<ExerciseResults> results = new ArrayList<ExerciseResults>();
 			ExerciseResults result = new ExerciseResults();
 			System.out.println(coordinates.get("ys"));
-			result.setResults((Double[])coordinates.get("ys").toArray());
-			result.setTime((Double[])coordinates.get("xs").toArray());
+			result.setResults(coordinates.get("ys").toArray(new Double[0]));
+			result.setTime(coordinates.get("xs").toArray(new Double[0]));
 			results.add(result);
 			setExerciseResults.addAddEffect( new String []{ ExerciseAnalyser.PROP_EXERCISE_RESULTS }, results);
 			setExerciseResults.addRequiredOutput(EXPECT_OUTPUT, new String[] {
